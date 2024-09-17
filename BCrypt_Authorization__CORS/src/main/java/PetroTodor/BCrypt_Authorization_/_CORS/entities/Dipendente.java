@@ -1,6 +1,7 @@
 package PetroTodor.BCrypt_Authorization_._CORS.entities;
 
 import PetroTodor.BCrypt_Authorization_._CORS.entities.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"password", "role", "authorities", "enabled", "accountNonExpired", "accountNonLocked", "credentialsNonExpired", "credentialsNonExpired"})
 @Table(name = "dipendenti")
 public class Dipendente implements UserDetails {
     @Id
@@ -51,4 +53,6 @@ public class Dipendente implements UserDetails {
     public String getUsername() {
         return this.email;
     }
+
+
 }

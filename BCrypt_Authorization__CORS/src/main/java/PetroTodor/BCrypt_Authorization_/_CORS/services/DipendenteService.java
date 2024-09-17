@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -20,6 +21,9 @@ public class DipendenteService {
 
     @Autowired
     DipendenteRepository dipendenteRepository;
+
+    @Autowired
+    private PasswordEncoder bcrypt;
 
     public Dipendente saveDipendente(DipendenteDto body) throws BadRequestException {
         if (this.dipendenteRepository.findByEmail(body.email()).isPresent()) {
@@ -31,7 +35,7 @@ public class DipendenteService {
                 body.nome(),
                 body.cognome(),
                 body.email(),
-                body.password(),
+                bcrypt.encode(body.password()),
                 "https://picsum.photos/200/300"
 
         );
