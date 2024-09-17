@@ -1,10 +1,10 @@
 package PetroTodor.BCrypt_Authorization_._CORS.services;
 
 
-import PetrovTodor.Spring_Security_._JWT.entities.Dipendente;
-import PetrovTodor.Spring_Security_._JWT.exceptions.NotFoundException;
-import PetrovTodor.Spring_Security_._JWT.payload.DipendenteDto;
-import PetrovTodor.Spring_Security_._JWT.repositories.DipendenteRepository;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Dipendente;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.NotFoundException;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.DipendenteDto;
+import PetroTodor.BCrypt_Authorization_._CORS.repositories.DipendenteRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

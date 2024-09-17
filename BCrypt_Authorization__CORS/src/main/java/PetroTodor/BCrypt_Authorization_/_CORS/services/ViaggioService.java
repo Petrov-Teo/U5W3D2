@@ -1,14 +1,14 @@
 package PetroTodor.BCrypt_Authorization_._CORS.services;
 
 
-import PetrovTodor.Spring_Security_._JWT.entities.Dipendente;
-import PetrovTodor.Spring_Security_._JWT.entities.Viaggio;
-import PetrovTodor.Spring_Security_._JWT.entities.enums.StatoViaggio;
-import PetrovTodor.Spring_Security_._JWT.exceptions.BadRequestException;
-import PetrovTodor.Spring_Security_._JWT.exceptions.NotFoundException;
-import PetrovTodor.Spring_Security_._JWT.payload.ViaggioDto;
-import PetrovTodor.Spring_Security_._JWT.repositories.DipendenteRepository;
-import PetrovTodor.Spring_Security_._JWT.repositories.ViaggioRepository;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Dipendente;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Viaggio;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.enums.StatoViaggio;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.BadRequestException;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.NotFoundException;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.ViaggioDto;
+import PetroTodor.BCrypt_Authorization_._CORS.repositories.DipendenteRepository;
+import PetroTodor.BCrypt_Authorization_._CORS.repositories.ViaggioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

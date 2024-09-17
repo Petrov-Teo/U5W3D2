@@ -2,6 +2,7 @@ package PetroTodor.BCrypt_Authorization_._CORS.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -9,6 +10,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
+// Se voglio dichiarare le regole di autorizzazione direttamente sui singoli endpoint, allora questa
+//Annotazione è OBBLIVAGORIA!
 public class Config {
 
     @Bean

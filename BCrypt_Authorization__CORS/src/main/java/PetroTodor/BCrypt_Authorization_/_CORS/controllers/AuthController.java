@@ -1,13 +1,13 @@
 package PetroTodor.BCrypt_Authorization_._CORS.controllers;
 
-import PetrovTodor.Spring_Security_._JWT.exceptions.BadRequestException;
-import PetrovTodor.Spring_Security_._JWT.exceptions.NotFoundException;
-import PetrovTodor.Spring_Security_._JWT.payload.DipendenteDto;
-import PetrovTodor.Spring_Security_._JWT.payload.DipendenteLoginDto;
-import PetrovTodor.Spring_Security_._JWT.payload.responsPayload.DipendenteLoginRespoDto;
-import PetrovTodor.Spring_Security_._JWT.payload.responsPayload.DipendenteResponseDto;
-import PetrovTodor.Spring_Security_._JWT.services.AuthService;
-import PetrovTodor.Spring_Security_._JWT.services.DipendenteService;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.BadRequestException;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.NotFoundException;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.DipendenteDto;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.DipendenteLoginDto;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.responsPayload.DipendenteLoginRespoDto;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.responsPayload.DipendenteResponseDto;
+import PetroTodor.BCrypt_Authorization_._CORS.services.AuthService;
+import PetroTodor.BCrypt_Authorization_._CORS.services.DipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -33,6 +33,7 @@ public class AuthController {
 
     //2. POST http://localhost:3001/dipendenti (+ body)
     @PostMapping("/register")
+    
     @ResponseStatus(HttpStatus.CREATED)
     public DipendenteResponseDto saveDipendente(@RequestBody @Validated DipendenteDto body, BindingResult validationResult) throws NotFoundException, org.apache.coyote.BadRequestException {
         if (validationResult.hasErrors()) {

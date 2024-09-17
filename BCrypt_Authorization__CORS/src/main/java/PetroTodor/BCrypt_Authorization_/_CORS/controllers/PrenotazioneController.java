@@ -1,14 +1,16 @@
 package PetroTodor.BCrypt_Authorization_._CORS.controllers;
 
-import PetrovTodor.Spring_Security_._JWT.entities.Prenotazione;
-import PetrovTodor.Spring_Security_._JWT.exceptions.BadRequestException;
-import PetrovTodor.Spring_Security_._JWT.exceptions.NotFoundException;
-import PetrovTodor.Spring_Security_._JWT.payload.PrenotazioneDto;
-import PetrovTodor.Spring_Security_._JWT.payload.responsPayload.PrenotazioneResponseDto;
-import PetrovTodor.Spring_Security_._JWT.services.PrenotazioneService;
+
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Prenotazione;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.BadRequestException;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.NotFoundException;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.PrenotazioneDto;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.responsPayload.PrenotazioneResponseDto;
+import PetroTodor.BCrypt_Authorization_._CORS.services.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +33,7 @@ import java.util.stream.Collectors;
 public class PrenotazioneController {
 
     @Autowired
-    PrenotazioneService prenotazioneService;
+    private PrenotazioneService prenotazioneService;
 
     //1. GET http://localhost:3001/prenotzioni
     @GetMapping
@@ -45,6 +47,7 @@ public class PrenotazioneController {
 
     @PostMapping
     //2. POST http://localhost:3001/prenotzioni (+ body)
+    @PreAuthorize("hasAuthority('ADMIN')")// SOLO GI ADMIN POSSONO ELIMINARE LE RISORSE
     @ResponseStatus(HttpStatus.CREATED)
     public PrenotazioneResponseDto savePrenotazioni(@RequestBody @Validated PrenotazioneDto body, BindingResult validationResult) throws BadRequestException {
         if (validationResult.hasErrors()) {
@@ -58,6 +61,7 @@ public class PrenotazioneController {
     }
 
     //3. GET  http://localhost:3001/prenotzioni/{idPrenotazioni}
+    @PreAuthorize("hasAuthority('ADMIN')")// SOLO GI ADMIN POSSONO ELIMINARE LE RISORSE
     @GetMapping("/{idPrenotazioni}")
     public Prenotazione findById(@PathVariable UUID idPrenotazioni) {
         return this.prenotazioneService.findById(idPrenotazioni);
@@ -65,12 +69,14 @@ public class PrenotazioneController {
 
     //4. PUT http://localhost:3001/prenotzioni/{idPrenotazioni}
     @PutMapping("/{idPrenotazioni}")
+    @PreAuthorize("hasAuthority('ADMIN')")// SOLO GI ADMIN POSSONO ELIMINARE LE RISORSE
     public Prenotazione findAndUpditePrenotazione(@PathVariable UUID idPrenotazione, @RequestBody PrenotazioneDto body) throws NotFoundException {
         return this.prenotazioneService.findAndUpdite(idPrenotazione, body);
     }
 
     //5. DELETE http://localhost:3001/prenotzioni/{idPrenotazioni}
     @DeleteMapping
+    @PreAuthorize("hasAuthority('ADMIN')")// SOLO GI ADMIN POSSONO ELIMINARE LE RISORSE
     public void findAndDelete(@PathVariable UUID idPrenotazione) {
         this.prenotazioneService.findAndDelete(idPrenotazione);
     }

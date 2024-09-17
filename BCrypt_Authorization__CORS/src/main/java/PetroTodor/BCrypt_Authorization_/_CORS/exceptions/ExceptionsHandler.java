@@ -1,8 +1,9 @@
 package PetroTodor.BCrypt_Authorization_._CORS.exceptions;
 
 
-import PetrovTodor.Spring_Security_._JWT.payload.ErrorsPayloadRecord;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.ErrorsPayloadRecord;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -21,6 +22,12 @@ public class ExceptionsHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)//Err 404
     public ErrorsPayloadRecord handleNotFound(NotFoundException ex) {
         return new ErrorsPayloadRecord(ex.getMessage(), LocalDateTime.now());
+    }
+
+    @ExceptionHandler(AuthorizationDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)//Err 403
+    public ErrorsPayloadRecord handleForbidden(AuthorizationDeniedException ex) {
+        return new ErrorsPayloadRecord("Non hai i permessi per accedere a questa risorsa!", LocalDateTime.now());
     }
 
     @ExceptionHandler(UnauthorizedException.class)

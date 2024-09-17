@@ -1,7 +1,7 @@
 package PetroTodor.BCrypt_Authorization_._CORS.entities;
 
 
-import PetrovTodor.Spring_Security_._JWT.entities.enums.StatoViaggio;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.enums.StatoViaggio;
 import jakarta.persistence.*;
 import lombok.*;
 

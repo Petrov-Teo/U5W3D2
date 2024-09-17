@@ -1,7 +1,7 @@
 package PetroTodor.BCrypt_Authorization_._CORS.security;
 
-import PetrovTodor.Spring_Security_._JWT.entities.Dipendente;
-import PetrovTodor.Spring_Security_._JWT.exceptions.UnauthorizedException;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Dipendente;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.UnauthorizedException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,5 +30,9 @@ public class JWTTools {
         } catch (Exception ex) {
             throw new UnauthorizedException("Problemi con il token, per favore effettua di nuovo il login!");
         }
+    }
+
+    public String extractDipendentefromTken(String accessToken) {
+        return Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parseSignedClaims(accessToken).getPayload().getSubject();
     }
 }

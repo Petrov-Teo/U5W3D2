@@ -1,9 +1,9 @@
 package PetroTodor.BCrypt_Authorization_._CORS.services;
 
-import PetrovTodor.Spring_Security_._JWT.entities.Dipendente;
-import PetrovTodor.Spring_Security_._JWT.exceptions.UnauthorizedException;
-import PetrovTodor.Spring_Security_._JWT.payload.DipendenteLoginDto;
-import PetrovTodor.Spring_Security_._JWT.security.JWTTools;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Dipendente;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.UnauthorizedException;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.DipendenteLoginDto;
+import PetroTodor.BCrypt_Authorization_._CORS.security.JWTTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

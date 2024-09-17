@@ -1,13 +1,14 @@
 package PetroTodor.BCrypt_Authorization_._CORS.controllers;
 
 
-import PetrovTodor.Spring_Security_._JWT.entities.Dipendente;
-import PetrovTodor.Spring_Security_._JWT.exceptions.BadRequestException;
-import PetrovTodor.Spring_Security_._JWT.payload.DipendenteDto;
-import PetrovTodor.Spring_Security_._JWT.services.DipendenteService;
+import PetroTodor.BCrypt_Authorization_._CORS.entities.Dipendente;
+import PetroTodor.BCrypt_Authorization_._CORS.exceptions.BadRequestException;
+import PetroTodor.BCrypt_Authorization_._CORS.payload.DipendenteDto;
+import PetroTodor.BCrypt_Authorization_._CORS.services.DipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -25,7 +26,7 @@ import java.util.UUID;
 @RequestMapping("/dipendenti")
 public class DipendenteController {
     @Autowired
-    DipendenteService dipendenteService;
+    private DipendenteService dipendenteService;
 
     //1. GET http://localhost:3001/dipendenti
     @GetMapping
@@ -45,6 +46,7 @@ public class DipendenteController {
 
     //4. PUT http://localhost:3001/dipendenti/{autoreId}
     @PutMapping("{idDipendente}")
+    @PreAuthorize("hasAuthority('ADMIN')")// SOLO GI ADMIN POSSONO ELIMINARE LE RISORSE
     public Dipendente findByIdAndUpdite(@PathVariable UUID idDipendente, @RequestParam DipendenteDto body) throws BadRequestException, org.apache.coyote.BadRequestException {
 
         return this.dipendenteService.findAndUpdate(idDipendente, body);
@@ -52,6 +54,7 @@ public class DipendenteController {
 
     // 5. DELETE http://localhost:3001/dipendenti/{autoreId}
     @DeleteMapping("{idDipendente}")
+    @PreAuthorize("hasAuthority('ADMIN')")// SOLO GI ADMIN POSSONO ELIMINARE LE RISORSE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDipendente(@PathVariable UUID idDipendente) {
         dipendenteService.findAndDelete(idDipendente);
